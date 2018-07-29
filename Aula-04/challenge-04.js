@@ -136,7 +136,7 @@ carro.addPessoas = (e)=> {
     carro.quantidadePessoas += e
     return `Já temos ${carro.quantidadePessoas} pessoas no carro!`
 }
-/*------------*/
+
 // console.log(carro.addPessoas(2))
 // console.log(carro.addPessoas(2))
 // console.log(carro.addPessoas(2))
@@ -175,24 +175,24 @@ carro.obterMarcaModelo() // Esse carro é um BMW M3
 // console.log(carro.obterMarcaModelo())
 
 // Adicione 2 pessoas no carro.
-carro.addPessoas(2) // Agora temos 2 no carro. Só cabe mais 3 pessoas!
+carro.addPessoas(2) // Já temos 2 pessoas no carro!
 // console.log(carro.addPessoas(2))
 
 // Adicione mais 4 pessoas no carro.
-carro.addPessoas(4) // Desculpe temos 2 no carro. Só há espaço para mais 3.
+carro.addPessoas(4) //  Só cabe mais 3  Pessoas!
 // console.log(carro.addPessoas(4))
 
 // Faça o carro encher.
-carro.addPessoas(3)  // OK!. Mas o carro lotou agora!
+carro.addPessoas(3)  // Já temos 5 pessoas no carro!
 // console.log(carro.addPessoas(3))
 
 
 // Tire 4 pessoas do carro.
-carro.addPessoas(-4)  // Ok. Agora temos 1 pessoa! Ganhamos 
+carro.addPessoas(-4)  // Já temos 1 pessoas no carro!
 // console.log(carro.addPessoas(-4))
 
 // Adicione 10 pessoas no carro.
-carro.addPessoas(10) // Desculpe temos 1 no carro. Só há espaço para mais 4.
+carro.addPessoas(10) // Só cabe mais 4  Pessoas!
 // console.log(carro.addPessoas(10))
 
 // Quantas pessoas temos no carro?
