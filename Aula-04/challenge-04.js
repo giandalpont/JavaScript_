@@ -120,42 +120,7 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 "Só cabem mais [QUANTIDADE_DE_PESSOAS_QUE_CABEM] pessoas!"
 - Se couber somente mais uma pessoa, mostrar a palavra "pessoa" no retorno
 citado acima, no lugar de "pessoas".
-*/
-carro.addPessoas = (e)=> {
-
-    if(e === 0){
-        return 'Ninguém quer uma carona?'
-    } 
-    else if( e > 0){ 
-        var add = carro.quantidadePessoas + e
-        add >= 4 ? pS = 'pessoa!' : pS = 'pessoas!'
-
-        if( add == carro.assentos){ 
-            carro.quantidadePessoas = e + carro.quantidadePessoas
-            return 'OK!. Mas o carro lotou agora!'
-        } 
-        else if( add < carro.assentos ){
-            carro.quantidadePessoas = e + carro.quantidadePessoas
-            return 'Agora temos ' + carro.quantidadePessoas + ' no carro. Só cabe mais ' + (carro.assentos - carro.quantidadePessoas) + ' ' + pS
-        }
-        else if( carro.quantidadePessoas < carro.assentos &&  add > carro.assentos ){
-            return 'Desculpe temos ' + carro.quantidadePessoas + ' no carro. Só há espaço para mais ' + (carro.assentos - carro.quantidadePessoas) + '.'
-        }
-        else if(carro.quantasPortas == carro.assentos){
-            return 'Desculpa o carro já esta cheio!'
-        }
-    }
-    else if (e < 0){
-        carro.quantidadePessoas > 1 ? pS = ' pessoa!' : pS = ' pessoas!'
-        carro.quantidadePessoas = carro.quantidadePessoas + e
-
-        return "Ok. Agora temos " + carro.quantidadePessoas + pS+ " Ganhamos "
-        "espaço para " + (carro.assentos - carro.quantidadePessoas)+" gora temos "+ 
-        carro.quantidadePessoas + pS + " Ganhamos espaço para  " + (carro.assentos - carro.quantidadePessoas)
-    } 
-}
-/*--------------------------------------------------------------------------*/
-/*   
+*/   
 carro.addPessoas = (e)=> {
     var addP =  carro.quantidadePessoas + e;
     var qP = carro.assentos - carro.quantidadePessoas;
@@ -171,11 +136,6 @@ carro.addPessoas = (e)=> {
     carro.quantidadePessoas += e
     return `Já temos ${carro.quantidadePessoas} pessoas no carro!`
 }
-*/
-/*--------------------------------------------------------------------------*/
-
-
-
 /*------------*/
 // console.log(carro.addPessoas(2))
 // console.log(carro.addPessoas(2))
