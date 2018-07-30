@@ -72,3 +72,28 @@ console.log('IF')
 console.log(myFunc4())
 console.log(myFunc4(2))
 console.log(myFunc4(1))
+
+/*----------------------------------------------------------------*/
+/*
+    Estrutura de Repetição (LOOP) WHILE
+*/
+
+var counter = 0;
+while( counter <= 10 ) {
+    console.log(counter);
+    counter++;
+}
+
+while(0){ 
+    console.log('zero')
+}
+
+var counter = 10;
+while(counter > 0){ 
+    console.log(counter--)
+}
+
+var counter = 10;
+while(counter--){
+    console.log(counter)
+}
