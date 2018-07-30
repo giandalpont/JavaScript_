@@ -53,3 +53,45 @@ console.log(' ')
 console.log(values)
 console.log(values.prop2)
 console.log(values.prop5())
+
+/*-------------------------------------------------------------------*/
+/*
+    Parâmetro de funções Arrays  - []
+    Parâmetro de funções Objetos  - {}
+    
+*/
+console.log(' ')
+console.log('Parâmetro de funções Arrays - []')
+console.log(' ')
+
+var arr = [1, 2, 3,];
+
+// Função returnando objetos 
+function myArr(arg){
+    return arg;
+}
+console.log(myArr())
+console.log(myArr(arr))
+
+function myArr2(arg){
+    return arg[1];
+}
+console.log(' ')
+console.log(myArr(arr))
+console.log(myArr2(arr))
+
+console.log(myArr([1, 4, 9, 22]))
+console.log(myArr2([1, 4, 9, 22]))
+
+console.log(myArr([true, 'Gian', null, 1===1]))
+console.log(myArr2([true, 'Gian', null, 1===1]))
+
+console.log('  Objeto ')
+var myObjto2 = {
+    prop1: 1,
+    prop2: 'Gian',
+    prop3: true,
+    prop4: null
+}
+console.log(myArr(myObjto2))
+console.log(myArr(myObjto2).prop2)
