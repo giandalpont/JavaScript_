@@ -1,30 +1,59 @@
 class  CalcController{
     constructor(){
 
-        this._displayCalc = 0;
-        this._dataAtual;
+        this._locale = 'pt-BR'
+
+        // Select element display
+        this._displayCalcEl = document.querySelector("#display")
+        this._dateEl = document.querySelector("#data")
+        this._timeEl = document. querySelector("#hora")
+
+        this._currentDate;
         this.initialize();
     }
-    initialize(){
-        // Select element display
-        let displayCalcEl = document.querySelector("#display")
-        let dataEl = document.querySelector("#data")
-        let timeEl = document. querySelector("#hora")
 
-        displayCalcEl.innerHTML = "112"
-        dataEl.innerHTML = '16/02/2019'
-        timeEl.innerHTML = '00:00'
+    initialize(){
+        this.setDisplayDateTime();
+
+        setInterval(()=>{
+            this.setDisplayDateTime();    
+        }, 1000)
     }
+
+    setDisplayDateTime(){
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        })
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale)
+    }
+
+    get displayTime(){
+        return this._timeEl.innerHTML;
+    }
+    set displayTime(value){
+        return this._timeEl.innerHTML = value;
+    }
+
+    get displayDate(){
+        return this._dateEl.innerHTML;
+    }
+    set displayDate(value){
+        return this._dateEl.innerHTML = value;
+    }
+
     get displayCalc(){
-        return this._displayCalc;
+        return this._displayCalcEl.innerHTML;
     }
-    get dataAtual(){
-        return this._dataAtual;
+    set displayCalc(value){
+        this._displayCalcEl.innerHTML = value;
     }
-    set displayCalc(valor){
-        this._displayCalc = valor;
+
+    get currentDate(){
+        return new Date();
     }
-    set dataAtual(valor){
-        this._dataAtual = valor;
+    set currentDate(value){
+        this._currentDate.innerHTML = value;
     }
 }
