@@ -43,8 +43,29 @@ class  CalcController{
         this._operation[this._operation.length - 1] = value
     }
 
+    pushOperation(value){
+        this._operation.push(value)
+        if(this._operation.length > 3){
+            
+            this.calc()
+            console.log(this._operation)
+        }
+    }
+
+    calc(){
+        // tirando o último elemento e guardando 
+        let last = this._operation.pop()
+        // retirando do array com o join('') e fazendo eval()
+        let result = eval(this._operation.join(''))
+        // Pegando resultado e o último elemento
+        this._operation = [result, last]
+    }
+
     isOperation(value){
         return (['+', '-', '%', '/', '*' ].indexOf(value) > -1)
+    }
+    setLastNumberToDisplay(){
+        
     }
 
     addOperation(value){
@@ -57,14 +78,21 @@ class  CalcController{
                 // outras coisas
                 // console.log('asd'+ value)
             }else{
-                this._operation.push(value)
+                this.pushOperation(value )
             }
         }else{
-            let newValue = this.getLastOperation().toString() + value.toString()
-            this.setLastOperation(parseInt(newValue))
+            if(this.isOperation(value)){
+                // é um operador
+                this.pushOperation(value)
+            }else{
+                // não é um operador 
+                let newValue = this.getLastOperation().toString() + value.toString()
+                this.setLastOperation(parseInt(newValue))
+                // atualizando display
+                this.setLastNumberToDisplay()
+            }
         }
         // console.log(this._operation)
-        this.displayCalc = this._operation
     }
     setError(){
         this.displayCalc = 'Error'
