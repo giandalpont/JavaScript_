@@ -27,6 +27,10 @@ class  CalcController{
             element.addEventListener(event, fn, false)
         })
     }
+
+    getLastOperation(){
+        return this._operation[this._operation.length-1]
+    }
     
     clearAll(){
          this._operation = []
@@ -34,9 +38,33 @@ class  CalcController{
     clearEntry(){
         this._operation.pop( )
     }
+
+    setLastOperation(value){
+        this._operation[this._operation.length - 1] = value
+    }
+
+    isOperation(value){
+        return (['+', '-', '%', '/', '*' ].indexOf(value) > -1)
+    }
+
     addOperation(value){
-        this._operation.push(value) 
-        console.log(this._operation)
+        // console.log(this.getLastOperation())
+        if(isNaN(this.getLastOperation())){
+            // trocar operador
+            if(this.isOperation(value )){
+                this.setLastOperation(value)
+            }else if(isNaN(value)){
+                // outras coisas
+                // console.log('asd'+ value)
+            }else{
+                this._operation.push(value)
+            }
+        }else{
+            let newValue = this.getLastOperation().toString() + value.toString()
+            this.setLastOperation(parseInt(newValue))
+        }
+        // console.log(this._operation)
+        this.displayCalc = this._operation
     }
     setError(){
         this.displayCalc = 'Error'
@@ -51,22 +79,25 @@ class  CalcController{
                 this.clearEntry()
             break
             case 'soma':
-                this. 
+                this.addOperation('+')
             break
-            case 'subtrcao':
-
+            case 'subtracao':
+                this.addOperation('-')
             break
             case 'divisao':
-
+                this.addOperation('/')
             break
             case 'multiplicacao':
-
+                this.addOperation('*')
             break
             case 'porcento':
-
+                this.addOperation('%')
             break
             case 'igual':
-
+                
+            break
+            case 'ponto':
+                this.addOperation('.')
             break
             case '0':
             case '1':
