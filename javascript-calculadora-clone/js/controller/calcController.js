@@ -99,7 +99,7 @@ class  CalcController{
     getLastItem(isOperator = true){
         let lastItem
         for (let  i = this._operation.length-1; i >= 0; i--){
-            if(this.isOperator(this._operation[i]) == isOperator){
+            if(this.isOperation(this._operation[i]) == isOperator){
                 lastItem = this._operation[i]
                 break 
             }
