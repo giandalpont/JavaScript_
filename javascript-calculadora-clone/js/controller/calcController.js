@@ -4,7 +4,7 @@ class  CalcController{
         this._locale = 'pt-BR'
         this._operation = []
         this._lastOperator = ''
-        this._lastNumber = ' '
+        this._lastNumber = ''
 
         // Select element display
         this._displayCalcEl = document.querySelector("#display")
@@ -99,13 +99,13 @@ class  CalcController{
     getLastItem(isOperator = true){
         let lastItem
         for (let  i = this._operation.length-1; i >= 0; i--){
-            if(this.isOperation(this._operation[i]) == isOperator){
+            if(this.isOperator(this._operation[i]) == isOperator){
                 lastItem = this._operation[i]
                 break 
             }
         }
         if(!lastItem){
-            lastItem = (isOperator) ? this._lastOperator:this._lastNumber
+            lastItem = (isOperator) ? this._lastOperator : this._lastNumber
         }
         return lastItem
     }
