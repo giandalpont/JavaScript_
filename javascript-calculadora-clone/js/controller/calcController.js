@@ -20,6 +20,8 @@ class  CalcController{
         setInterval(()=>{
             this.setDisplayDateTime()
         }, 1000)
+
+        this.setLastNumberToDisplay()
     }
 
     addEventListenerAll(element, events, fn){
@@ -33,10 +35,12 @@ class  CalcController{
     }
     
     clearAll(){
-         this._operation = []
+        this._operation = []
+        this.setLastNumberToDisplay()
     }
     clearEntry(){
-        this._operation.pop( )
+        this._operation.pop()
+        this.setLastNumberToDisplay()
     }
 
     setLastOperation(value){
@@ -52,12 +56,23 @@ class  CalcController{
     }
 
     calc(){
-        // tirando o último elemento e guardando 
-        let last = this._operation.pop()
+        let last = ''
+        // tirando o último elemento e guardando e validando os 3 númerios 
+        if(this._operation.length > 3){
+            last = this._operation.pop()
+        }
         // retirando do array com o join('') e fazendo eval()
         let result = eval(this._operation.join(''))
-        // Pegando resultado e o último elemento
-        this._operation = [result, last]
+        // calculo a porcentagem
+        if(last == '%'){
+            result /= 100
+            this._operation = [result]
+        }else{
+            // Pegando resultado e o último elemento
+            this._operation = [result]
+            // validando add sómente se existir
+            if(last) this._operation.push(last)
+        }
         this.setLastNumberToDisplay()
     }
 
@@ -72,6 +87,7 @@ class  CalcController{
                 break 
             }
         }
+        if(!lastNumber) lastNumber = 0
         this.displayCalc = lastNumber
     }
 
@@ -130,7 +146,7 @@ class  CalcController{
                 this.addOperation('%')
             break
             case 'igual':
-                
+                this.calc()
             break
             case 'ponto':
                 this.addOperation('.')
