@@ -3,6 +3,8 @@ class  CalcController{
 
         this._locale = 'pt-BR'
         this._operation = []
+        this._lastOperator = ''
+        this._lastNumber = ' '
 
         // Select element display
         this._displayCalcEl = document.querySelector("#display")
@@ -20,7 +22,6 @@ class  CalcController{
         setInterval(()=>{
             this.setDisplayDateTime()
         }, 1000)
-
         this.setLastNumberToDisplay()
     }
 
@@ -55,14 +56,30 @@ class  CalcController{
         }
     }
 
+    getResult(){
+        // console.log('getResult'+this._operation)
+        return eval(this._operation.join(''))
+    }
+
     calc(){
-        let last = ''
+        let last = '' 
+        this._lastOperator = this.getLastItem()
         // tirando o último elemento e guardando e validando os 3 númerios 
+        if(this._operation.length < 3){
+            let firtItem = this._operation[0] 
+            this._operation = [firtItem, this._lastOperator, this._lastNumber]
+        }
         if(this._operation.length > 3){
             last = this._operation.pop()
+            this._lastNumber = this.getResult()
+        }else
+        if(this._operation.length == 3){
+            this._lastNumber = this.getLastItem(false)
         }
+        console.log('lastOperator'+this._lastOperator)
+        console.log('lasNumber'+this._lastNumber)
         // retirando do array com o join('') e fazendo eval()
-        let result = eval(this._operation.join(''))
+        let result = this.getResult()
         // calculo a porcentagem
         if(last == '%'){
             result /= 100
@@ -79,14 +96,21 @@ class  CalcController{
     isOperation(value){
         return (['+', '-', '%', '/', '*' ].indexOf(value) > -1)
     }
-    setLastNumberToDisplay(){
-        let lastNumber
+    getLastItem(isOperator = true){
+        let lastItem
         for (let  i = this._operation.length-1; i >= 0; i--){
-            if(!this.isOperation(this._operation[i])){
-                lastNumber = this._operation[i]
+            if(this.isOperation(this._operation[i]) == isOperator){
+                lastItem = this._operation[i]
                 break 
             }
         }
+        if(!lastItem){
+            lastItem = (isOperator) ? this._lastOperator:this._lastNumber
+        }
+        return lastItem
+    }
+    setLastNumberToDisplay(){
+        let lastNumber = this.getLastItem(false)
         if(!lastNumber) lastNumber = 0
         this.displayCalc = lastNumber
     }
