@@ -134,7 +134,7 @@ class  CalcController{
             }else{
                 // não é um operador 
                 let newValue = this.getLastOperation().toString() + value.toString()
-                this.setLastOperation(parseFloat(newValue))
+                this.setLastOperation(newValue)
                 // atualizando display
                 this.setLastNumberToDisplay()
             }
@@ -146,6 +146,7 @@ class  CalcController{
     }
     addDot(){
         let lastOperation = this.getLastOperation()
+        if(typeof lastOperation === 'string ' && lastOperation.split('').indexOf('.') > -1 ) return
         // console.log(lastOperation)
         if(this.isOperation(lastOperation) || !lastOperation){
             this.pushOperation('0.')
