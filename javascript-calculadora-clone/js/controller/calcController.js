@@ -5,6 +5,8 @@ class  CalcController{
         this._operation = []
         this._lastOperator = ''
         this._lastNumber = ''
+        this._audioOnOff = false
+        this._audio = new Audio('click.mp3')
 
         // Select element display
         this._displayCalcEl = document.querySelector("#display")
@@ -20,7 +22,7 @@ class  CalcController{
     pasteFromClipboard(){
         document.addEventListener('paste', e=>{
             let text = e.clipboardData.getData('Text')
-            this.displayCalc = parseFloat(text )
+            this.displayCalc = parseFloat(text)
         })
     }
     copyToClipboard(){
@@ -39,10 +41,26 @@ class  CalcController{
         }, 1000)
         this.setLastNumberToDisplay()
         this.copyToClipboard()
+        document.querySelectorAll('.btn-ac').forEach(btn=>{
+            btn.addEventListener('dblclick', e=>{
+                this.toggleAudio()
+            })
+        })
+    }
+    toggleAudio(){
+        // this._audioOnOff = (this.audioOnOff) ? false : true
+        this._audioOnOff = !this.audioOnOff
+    }
+    playAudio(){
+        if(this._audioOnOff){
+            this._audio.currentTime = 0
+            this._audio.play()
+        }
     }
     initkeyboard(){
         document.addEventListener('keyup', e=>{
-            console.log(e)
+            this.playAudio()
+            // console.log(e)
             switch(e.key){
                 case 'Scape':
                 case ' ':
@@ -217,6 +235,7 @@ class  CalcController{
     }
 
     execBtn(value){
+        this.playAudio()
         switch(value){
             case 'ac':
                 this.clearAll()
