@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action='/login' method='post'>
+      <input
+        type='text'
+        name='username'
+        placeholder='Username'
+      />
+      <input
+        type='password'
+        name='password'
+        placeholder='Password'
+      />
+      <input
+        type='submit'
+        value='Log In'
+      />
+
+      <% if (menssgem) { %>
+        <div class='error'>
+          <%= menssgem %>
+        </div>
+      <% } %>
+    </form>
+  </body>
+</html>
